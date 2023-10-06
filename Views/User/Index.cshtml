@@ -1,0 +1,44 @@
+﻿@model IEnumerable<UserRegistration.Models.User>
+@{
+    ViewData["Title"] = "Index";
+}
+<div class="container">
+    <div class="row">
+        <div class="col-10 offset-2">
+            <h1 class="text-center text-primary">User Record</h1>
+            <a class="btn btn-sm btn-success m-1" asp-controller="User" asp-action="Create">Create</a>
+            <p class="text-center text-success">@TempData["error"]</p>
+            <table class="table table-bordered">
+                <tr class="text-center">
+                    <th>UserId</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>DateOfBirth</th>
+                    <th>Gender</th>
+                    <th>Address</th>
+                    <th>Contact Number</th>
+                    <th>Action</th>
+                </tr>
+                @foreach(var d in Model)
+                {
+                    <tr class="text-center">
+                        <td>@d.Id</td>
+                        <td>@d.Name</td>
+                        <td>@d.Email</td>
+                        <td>@d.DateOfBirth</td>
+                        <td>@d.Gender</td>
+                        <td>@d.Address</td>
+                        <td>@d.ContactNumber</td>
+                        <td>
+                            <a class="btn btn-sm btn-warning" asp-controller="User"
+                            asp-action="Edit" asp-route-id="@d.Id">Edit</a>
+                            <a class="btn btn-sm btn-danger" asp-controller="User"
+                               asp-action="Delete" asp-route-id="@d.Id">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
+</div>
+
